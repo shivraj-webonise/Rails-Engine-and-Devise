@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<%if @contact %>
+	  
+	<h1><%= @contact.title %></h1>
+	  <body>
+	    <div class= "description">
+		<%= @contact.description %> <br>
+	    </div>
+	    <div class='phonenumber'>
+	      <b>Phone Number  : </b><%= @contact.phonenumber %> <br>
+	    </div>
+	    <div class='email'>    
+	      <b> Email : </b> <%= @contact.email %> <br>
+	    </div>
+	    <div class='address'>
+	      <b> Address : </b><%= @contact.address %> <br>
+	    </div>
+	  </body>
+	<br>
+  <%else%>
+      <%= link_to 'New Contact', new_contact_path%>
+
+<%end%>
