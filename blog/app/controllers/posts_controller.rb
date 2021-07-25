@@ -1,26 +1,26 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index,:show] 
-
 
   def index
     if user_signed_in?
       @posts = current_user.posts
     else
-      @posts = Post.where(:published => true)
+      @posts = Post.all
     end
   end
 
-  def show()end
+  def show
+  end
 
   def new
     @post = current_user.posts.build
   end
 
-  def edit()end
+  def edit
+  end
 
   def create
-    @post = current_user.posts.create(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to @post
     else
@@ -39,15 +39,15 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_url
+    
   end
 
   private
-
     def set_post
       @post = Post.find(params[:id])
     end
 
     def post_params
-      params.require(:post).permit(:title, :author, :image_url, :published, :content)
+      params.require(:post).permit(:title, :author, :image_url, :published, :content, :user_id)
     end
 end
