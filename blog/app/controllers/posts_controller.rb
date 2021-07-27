@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     if user_signed_in?
       @posts = current_user.posts
     else
-      @posts = Post.where(:published => true)
+      @posts = Post.published_only
     end
   end
 
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   def edit()end
 
   def create
-    @post = current_user.posts.create(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to @post
     else

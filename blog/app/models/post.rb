@@ -4,4 +4,5 @@ class Post < ApplicationRecord
   validates_presence_of :content
   validates_presence_of :image_url
   belongs_to :user
+  scope :published_only, -> { where(published: true) }
 end
