@@ -3,11 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    if user_signed_in?
-      @posts = current_user.posts
-    else
-      @posts = Post.published_only
-    end
+    @posts = user_signed_in? ? current_user.posts : Post.published_only
   end
 
   def show()end

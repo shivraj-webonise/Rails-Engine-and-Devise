@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :posts
   validates_presence_of :email
-  validates_presence_of :password, length: {minimum: 8}
+  validates_presence_of :password, length: { minimum: 8 }
 end
